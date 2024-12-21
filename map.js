@@ -127,11 +127,33 @@ const joinedArraysOf = function (arrayOfArrays) {
 
 displayResult(joinedArraysOf([["a", "b"], ["c", "d"]])); // [ "ab", "cd" ]
 
-// repeat strings in ["hi", "bye"] => ["hihi", "byebye"]
-const repeatedStringsOf = function (strings) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Repeat Strings _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// count vowels in ["apple", "banana", "grape"] => [2, 3, 2]
-const countVowelsOf = function (strings) { };
+const repeatedStringsOf = function (strings) {
+  return strings.map(function (string) { return string.repeat(2); });
+};
+
+displayResult(repeatedStringsOf(["hi", "bye"])); // ["hihi", "byebye"]
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Count vowels _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getCountOfVowel = function (string) {
+  const vowels = 'aeiouAEIOU';
+  let count = 0;
+
+  for (const char of [...string]) {
+    count += vowels.includes(char) ? 1 : 0;
+  }
+
+  return count;
+};
+
+const countVowelsOf = function (strings) {
+  return strings.map(getCountOfVowel);
+};
+
+displayResult(countVowelsOf(["apple", "banana", "grape"])); //[ 2, 3, 2 ]
+displayResult(countVowelsOf(["Welcome", "Good", "morning"])); //[ 3, 2, 2 ]
 
 // reverse arrays of [[1, 2, 3], [4, 5, 6]] => [[3, 2, 1], [6, 5, 4]]
 const reversedArraysOf = function (arrays) { };
