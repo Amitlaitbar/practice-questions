@@ -138,11 +138,11 @@ displayResult(repeatedStringsOf(["hi", "bye"])); // ["hihi", "byebye"]
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Count vowels _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const getCountOfVowel = function (string) {
-  const vowels = 'aeiouAEIOU';
+  const vowels = 'aeiou';
   let count = 0;
 
   for (const char of [...string]) {
-    count += vowels.includes(char) ? 1 : 0;
+    count += vowels.includes(char.toLowerCase()) ? 1 : 0;
   }
 
   return count;
@@ -166,14 +166,11 @@ displayResult(reversedArraysOf([[1, 2, 3], [4, 5, 6]])); // [ [ 3, 2, 1 ], [ 6, 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Remove Vowels _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const getStrWithoutVowel = function (string) {
-  const vowels = 'aeiouAEIOU';
-  let strWithoutVowels = '';
+  const vowels = 'aeiou';
 
-  for (const char of [...string]) {
-    strWithoutVowels += !vowels.includes(char) ? char : '';
-  }
-
-  return strWithoutVowels;
+  return [...string].map(function (char) {
+    return vowels.includes(char.toLowerCase()) ? '' : char;
+  }).join('');
 };
 
 const withoutVowelsOf = function (strings) {
@@ -215,9 +212,23 @@ const reversedWordsOf = function (strings) {
 
 displayResult(reversedWordsOf(["hello world", "goodbye moon"])); //["olleh dlrow", "eybdoog noom"]
 
-// extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Extract unique characters _-_-_-_-_-_-_-_-_-_-_-_- */
+
+// extract unique characters from ["apple", "banana", "grape"] => ["aple", "ban", "grape"]
 // Maintain the order of their first appearance in each string
-const uniqueCharactersOf = function (strings) { };
+
+const getUniqueChars = function (string) {
+  return [...string].reduce(function (uniqueChars, char) {
+    uniqueChars += uniqueChars.includes(char) ? '' : char;
+    return uniqueChars;
+  }, '');
+};
+
+const uniqueCharactersOf = function (strings) {
+  return strings.map(getUniqueChars);
+};
+
+displayResult(uniqueCharactersOf(["apple", "banana", "grape"])); // [ "aple", "ban", "grape" ]
 
 // generate ranges from [3, 5, 2] => [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
 const rangesOf = function (numbers) { };
