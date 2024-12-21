@@ -1,11 +1,30 @@
-// squares of [1, 2, 3] => [1, 4, 9]
-const squaresOf = function (numbers) { };
+const displayResult = function (result) { console.log(result); return; };
 
-// lengths of ["apple", "banana", "kiwi"] => [5, 6, 4]
-const lengthsOf = function (strings) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_ Squares Of All numbers _-_-_-_-_-_-_-_-_-_-_-_-_- */
 
-// uppercase of ["hello", "world"] => ["HELLO", "WORLD"]
-const uppercaseOf = function (strings) { };
+const squaresOf = function (numbers) {
+  return numbers.map((number) => number * number);
+};
+
+displayResult(squaresOf([1, 2, 3]));        // [1, 4, 9]
+displayResult(squaresOf([1, 2, 3, 4, 5]));  // [1, 4, 9, 16, 25]
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Lengths Of All Strings _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const lengthsOf = function (strings) {
+  return strings.map((string) => string.length);
+};
+
+displayResult(lengthsOf(["apple", "banana", "kiwi"])); // [5, 6, 4]
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ toUpperCase _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const uppercaseOf = function (strings) {
+  return strings.map((string) => string.toUpperCase());
+};
+
+displayResult(uppercaseOf(["hello", "world"])); // [ "HELLO", "WORLD" ]
+displayResult(uppercaseOf(["welcome", "to", "bengaluru"])); // [ "WELCOME", "TO", "BENGALURU" ]
 
 // first characters of ["apple", "banana", "kiwi"] => ["a", "b", "k"]
 const firstCharactersOf = function (strings) { };
