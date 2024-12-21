@@ -32,12 +32,20 @@ const firstCharactersOf = function (strings) {
   return strings.map((string) => string.at(0));
 };
 
-displayResult(firstCharactersOf(["apple", "banana", "kiwi"])); // ["a", "b", "k"]
-displayResult(firstCharactersOf(["Hello", "Sam", "Welcome"])); // [ "H", "S", "W" ]
+// displayResult(firstCharactersOf(["apple", "banana", "kiwi"])); // ["a", "b", "k"]
+// displayResult(firstCharactersOf(["Hello", "Sam", "Welcome"])); // [ "H", "S", "W" ]
 
-// truth values of [0, 1, 2, 3] => [false, true, true, true]
+/* _-_-_-_-_-_-_-_-_-_-_-_ Truth Values _-_-_-_-_-_-_-_-_-_-_- */
+
 // Assume non-zero numbers are true, and zero is false
-const truthValuesOf = function (numbers) { };
+
+const truthValuesOf = function (numbers) {
+  return numbers.map((number) => !!number);
+};
+
+displayResult(truthValuesOf([0])); // [ false ]
+displayResult(truthValuesOf([0, 1])); // [ false, true ]
+displayResult(truthValuesOf([0, 1, 2, 3])); //[ false, true, true, true ]
 
 // reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
 const reversedStringsOf = function (strings) { };
