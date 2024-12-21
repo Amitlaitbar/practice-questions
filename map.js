@@ -90,18 +90,30 @@ displayResult(charCodesOf(["A", "B", "C"])); // [ 65, 66, 67 ]
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Extract Domain Names _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const extractDomainNames = function (email) {
-  const index = email.indexOf('@');
-  return email.slice(index + 1);
+  const [_, domain] = email.split('@');
+  return domain;
 };
 
 const domainNamesOf = function (emails) {
-  return emails.map(extractDomain);
+  return emails.map(extractDomainNames);
 };
 
 displayResult(domainNamesOf(["user1@gmail.com", "admin@yahoo.com"])); // ["gmail.com", "yahoo.com"]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Split Words _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
-const splitWordsOf = function (strings) { };
+
+const splitWord = function (string) {
+  const splitedString = string.split(' ');
+  return [...splitedString];
+};
+
+const splitWordsOf = function (strings) {
+  return strings.map(splitWord);
+};
+
+displayResult(splitWordsOf(["hello world", "goodbye moon"])); // [ [ "hello", "world" ], [ "goodbye", "moon" ] ]
 
 // join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
 const joinedArraysOf = function (arrayOfArrays) { };
