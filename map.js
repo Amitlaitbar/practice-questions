@@ -58,10 +58,17 @@ displayResult(reversedStringsOf(["Naman", "Madam"])); //[ "namaN", "madaM" ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_ Double letters _-_-_-_-_-_-_-_-_-_-_- */
 
-// double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
-const doubleLettersOf = function (strings) {
+// double letters of ["cat", "dog", "bat"] => ["ccaatt", "ddoogg", "bbaatt"]
 
+const getDoubleLettersString = function (string) {
+  return [...string].map(function (char) { return char + char; }).join('');
 };
+
+const doubleLettersOf = function (strings) {
+  return strings.map(getDoubleLettersString);
+};
+
+displayResult(doubleLettersOf(["cat", "dog", "bat"])); // [ "ccaatt", "ddoogg", "bbaatt" ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Boolean Negation _-_-_-_-_-_-_-_-_-_-_-_- */
 
