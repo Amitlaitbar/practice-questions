@@ -59,7 +59,7 @@ displayResult(reversedStringsOf(["Naman", "Madam"])); //[ "namaN", "madaM" ]
 /* _-_-_-_-_-_-_-_-_-_-_-_ Double letters _-_-_-_-_-_-_-_-_-_-_- */
 
 const getDoubleLettersString = function (string) {
-  return [...string].map(function (char) { return char + char; }).join('');
+  return [...string].map(function (char) { return char.repeat(2); }).join('');
 };
 
 const doubleLettersOf = function (strings) {
@@ -89,8 +89,16 @@ displayResult(charCodesOf(["A", "B", "C"])); // [ 65, 66, 67 ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Extract Domain Names _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
-const domainNamesOf = function (emails) { };
+const extractDomainNames = function (email) {
+  const index = email.indexOf('@');
+  return email.slice(index + 1);
+};
+
+const domainNamesOf = function (emails) {
+  return emails.map(extractDomain);
+};
+
+displayResult(domainNamesOf(["user1@gmail.com", "admin@yahoo.com"])); // ["gmail.com", "yahoo.com"]
 
 // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
 const splitWordsOf = function (strings) { };
