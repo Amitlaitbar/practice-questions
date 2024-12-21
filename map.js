@@ -40,7 +40,7 @@ displayResult(firstCharactersOf(["Hello", "Sam", "Welcome"])); // [ "H", "S", "W
 // Assume non-zero numbers are true, and zero is false
 
 const truthValuesOf = function (numbers) {
-  return numbers.map((number) => !!number);
+  return numbers.map(function (number) { return number !== 0; });
 };
 
 displayResult(truthValuesOf([0])); // [ false ]
@@ -56,11 +56,20 @@ const reversedStringsOf = function (strings) {
 displayResult(reversedStringsOf(["hello", "world"])); //[ "olleh", "dlrow" ]
 displayResult(reversedStringsOf(["Naman", "Madam"])); //[ "namaN", "madaM" ]
 
-// double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
-const doubleLettersOf = function (strings) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_ Double letters _-_-_-_-_-_-_-_-_-_-_- */
 
-// boolean negation of [true, false, true] => [false, true, false]
-const negatedBooleansOf = function (booleans) { };
+// double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
+const doubleLettersOf = function (strings) {
+
+};
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Boolean Negation _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const negatedBooleansOf = function (booleans) {
+  return booleans.map(function (boolean) { return !boolean; });
+};
+
+displayResult(negatedBooleansOf([true, false, true])); //[false, true, false]
 
 // character codes of ["a", "b", "c"] => [97, 98, 99]
 // Use the `charCodeAt` method on each string
