@@ -58,8 +58,6 @@ displayResult(reversedStringsOf(["Naman", "Madam"])); //[ "namaN", "madaM" ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_ Double letters _-_-_-_-_-_-_-_-_-_-_- */
 
-// double letters of ["cat", "dog", "bat"] => ["ccaatt", "ddoogg", "bbaatt"]
-
 const getDoubleLettersString = function (string) {
   return [...string].map(function (char) { return char + char; }).join('');
 };
@@ -78,9 +76,18 @@ const negatedBooleansOf = function (booleans) {
 
 displayResult(negatedBooleansOf([true, false, true])); //[false, true, false]
 
-// character codes of ["a", "b", "c"] => [97, 98, 99]
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Character codes _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // Use the `charCodeAt` method on each string
-const charCodesOf = function (strings) { };
+
+const charCodesOf = function (strings) {
+  return strings.map(function (string) { return string.charCodeAt(); });
+};
+
+displayResult(charCodesOf(["a", "b", "c"])); // [ 97, 98, 99 ]
+displayResult(charCodesOf(["A", "B", "C"])); // [ 65, 66, 67 ]
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Extract Domain Names _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
 const domainNamesOf = function (emails) { };
