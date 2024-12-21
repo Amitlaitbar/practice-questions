@@ -230,11 +230,44 @@ const uniqueCharactersOf = function (strings) {
 
 displayResult(uniqueCharactersOf(["apple", "banana", "grape"])); // [ "aple", "ban", "grape" ]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Generate Ranges _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // generate ranges from [3, 5, 2] => [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
-const rangesOf = function (numbers) { };
+
+const generateRange = function (number) {
+  const range = [];
+
+  for (let index = 0; index < number; index += 1) {
+    range.push(index);
+  }
+
+  return range;
+};
+
+const rangesOf = function (numbers) {
+  return numbers.map(generateRange);
+};
+
+displayResult(rangesOf([3, 5, 2])); // [ [ 0, 1, 2 ], [ 0, 1, 2, 3, 4 ], [ 0, 1 ] ]
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Capitalize first letters _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
-const capitalizedFirstLettersOf = function (strings) { };
+
+const capitalizeWords1Letter = function (word) {
+  const [firstChar, ...remainWord] = [...word];
+  return [firstChar.toUpperCase(), ...remainWord].join('');
+};
+
+const getTitleCasing = function (string) {
+  return string.split(' ').map(capitalizeWords1Letter).join(' ');
+};
+
+const capitalizedFirstLettersOf = function (strings) {
+  return strings.map(getTitleCasing);
+};
+
+displayResult(capitalizedFirstLettersOf(["hello world", "goodbye moon"])); //[ "Hello World", "Goodbye Moon" ]
 
 // find word lengths in ["apple pie", "banana split"] => [[5, 3], [6, 5]]
 const wordLengthsOf = function (strings) { };
