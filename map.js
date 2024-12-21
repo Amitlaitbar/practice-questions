@@ -6,8 +6,8 @@ const squaresOf = function (numbers) {
   return numbers.map((number) => number * number);
 };
 
-// displayResult(squaresOf([1, 2, 3]));        // [1, 4, 9]
-// displayResult(squaresOf([1, 2, 3, 4, 5]));  // [1, 4, 9, 16, 25]
+displayResult(squaresOf([1, 2, 3]));        // [1, 4, 9]
+displayResult(squaresOf([1, 2, 3, 4, 5]));  // [1, 4, 9, 16, 25]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Lengths Of All Strings _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -15,7 +15,7 @@ const lengthsOf = function (strings) {
   return strings.map((string) => string.length);
 };
 
-// displayResult(lengthsOf(["apple", "banana", "kiwi"])); // [5, 6, 4]
+displayResult(lengthsOf(["apple", "banana", "kiwi"])); // [5, 6, 4]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ toUpperCase _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -23,8 +23,8 @@ const uppercaseOf = function (strings) {
   return strings.map((string) => string.toUpperCase());
 };
 
-// displayResult(uppercaseOf(["hello", "world"])); // [ "HELLO", "WORLD" ]
-// displayResult(uppercaseOf(["welcome", "to", "bengaluru"])); // [ "WELCOME", "TO", "BENGALURU" ]
+displayResult(uppercaseOf(["hello", "world"])); // [ "HELLO", "WORLD" ]
+displayResult(uppercaseOf(["welcome", "to", "bengaluru"])); // [ "WELCOME", "TO", "BENGALURU" ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_ First Characters of Strings _-_-_-_-_-_-_-_-_-_-_- */
 
@@ -32,8 +32,8 @@ const firstCharactersOf = function (strings) {
   return strings.map((string) => string.at(0));
 };
 
-// displayResult(firstCharactersOf(["apple", "banana", "kiwi"])); // ["a", "b", "k"]
-// displayResult(firstCharactersOf(["Hello", "Sam", "Welcome"])); // [ "H", "S", "W" ]
+displayResult(firstCharactersOf(["apple", "banana", "kiwi"])); // ["a", "b", "k"]
+displayResult(firstCharactersOf(["Hello", "Sam", "Welcome"])); // [ "H", "S", "W" ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_ Truth Values _-_-_-_-_-_-_-_-_-_-_- */
 
@@ -47,8 +47,14 @@ displayResult(truthValuesOf([0])); // [ false ]
 displayResult(truthValuesOf([0, 1])); // [ false, true ]
 displayResult(truthValuesOf([0, 1, 2, 3])); //[ false, true, true, true ]
 
-// reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
-const reversedStringsOf = function (strings) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_ Reverse Strings _-_-_-_-_-_-_-_-_-_-_- */
+
+const reversedStringsOf = function (strings) {
+  return strings.map((string) => [...string].reverse().join(''));
+};
+
+displayResult(reversedStringsOf(["hello", "world"])); //[ "olleh", "dlrow" ]
+displayResult(reversedStringsOf(["Naman", "Madam"])); //[ "namaN", "madaM" ]
 
 // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
 const doubleLettersOf = function (strings) { };
