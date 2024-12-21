@@ -201,8 +201,19 @@ const cumulativeSumsOf = function (arrays) {
 
 displayResult(cumulativeSumsOf([[1, 2, 3], [4, 5, 6]])); //[ [ 1, 3, 6 ], [ 4, 9, 15 ] ]
 
-// reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
-const reversedWordsOf = function (strings) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ reverse words _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getReversedWord = function (word) {
+  return [...word].reverse().join('');
+};
+
+const reversedWordsOf = function (strings) {
+  return strings.map(function (string) {
+    return string.split(' ').map(getReversedWord).join(' ');
+  });
+};
+
+displayResult(reversedWordsOf(["hello world", "goodbye moon"])); //["olleh dlrow", "eybdoog noom"]
 
 // extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
 // Maintain the order of their first appearance in each string
