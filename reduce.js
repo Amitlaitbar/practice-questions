@@ -373,8 +373,25 @@ const findFirstNonRepeated = function (numbers) { };
 // countVowels(["apple", "banana", "grape"]) => { a: 6, e: 3, i: 0, o: 0, u: 0 }
 const countVowels = function (words) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Merge Consecutive Duplicates _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // mergeConsecutiveDuplicates([1,1,1,2,3,3,4]) => [1,2,3,4]
-const mergeConsecutiveDuplicates = function (array) { };
+
+const getUniqueNumbers = function (uniqueElements, number) {
+  const arr = [...uniqueElements];
+
+  if (!arr.includes(number)) {
+    arr.push(number);
+  }
+
+  return arr;
+};
+
+const mergeConsecutiveDuplicates = function (array) {
+  return array.reduce(getUniqueNumbers, []);
+};
+
+displayResult('Merge Consecutive Duplicates of', '[1,1,1,2,3,3,4]', mergeConsecutiveDuplicates([1, 1, 1, 2, 3, 3, 4])); //[ 1, 2, 3, 4 ]
 
 // longestConsecutiveSubsequence([1, 2, 0, 1, 3, 4, 5]) => [0, 1, 2, 3, 4, 5]
 const longestConsecutiveSubsequence = function (numbers) { };
