@@ -55,7 +55,8 @@ displayResult('max of', '[3, 1, 4, 1, 5, 9, 2]', maxOf([3, 1, 4, 1, 5, 9, 2])); 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of Positive numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const getSumOfPositives = function (sum, number) {
-  return sum += number > 0 ? number : 0;
+  const numberToAdd = number > 0 ? number : 0;
+  return sum + numberToAdd;
 };
 
 const sumPositiveNumbers = function (numbers) {
@@ -67,7 +68,8 @@ displayResult('Sum of Positives', '[1, -2, 3, -4]', sumPositiveNumbers([1, -2, 3
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of Squares _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const getSumOfSquares = function (sum, number) {
-  return sum += number ** 2;
+  const numberToAdd = number ** 2;
+  return sum + numberToAdd;
 };
 
 const sumOfSquares = function (numbers) {
@@ -76,8 +78,20 @@ const sumOfSquares = function (numbers) {
 
 displayResult('Sum of Squares', '[1, 2, 3, 4]', sumOfSquares([1, 2, 3, 4])); //30
 
-// sumOfOddNumbers([1, 2, 3, 4, 5]) => 9
-const sumOfOddNumbers = function (numbers) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of odds _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getSumOfOdds = function (sum, number) {
+  const numberToAdd = number % 2 === 1 ? number : 0;
+  return sum + numberToAdd;
+};
+
+const sumOfOddNumbers = function (numbers) {
+  return numbers.reduce(getSumOfOdds, 0);
+};
+
+displayResult('sum of odds', '[1, 2, 3, 4, 5]', sumOfOddNumbers([1, 2, 3, 4, 5])); // 9
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ count negative numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // countNegativeNumbers([1, -2, 3, -4]) => 2
 const countNegativeNumbers = function (numbers) { };
