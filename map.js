@@ -323,8 +323,19 @@ const sortedLettersOf = function (strings) {
 
 displayResult(sortedLettersOf(["cat", "bat", "rat"])); // ["act", "abt", "art"]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Sort letters _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // wrap strings in brackets ["apple", "banana"] => ["[apple]", "[banana]"]
-const wrappedStringsOf = function (strings) { };
+
+const getWrappedString = function (string) {
+  return "[" + string + "]";
+};
+
+const wrappedStringsOf = function (strings) {
+  return strings.map(getWrappedString);
+};
+
+displayResult(wrappedStringsOf(["apple", "banana"])); // [ "[apple]", "[banana]" ]
 
 // extract names from [{ name: "Alice" }, { name: "Bob" }] => ["Alice", "Bob"]
 const extractNames = function (objects) { };
