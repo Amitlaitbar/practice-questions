@@ -388,8 +388,28 @@ const nestedAverage = function (nestedNumbers) { };
 // cartesianProduct([1, 2], ['a', 'b']) => [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]
 const cartesianProduct = function (arr1, arr2) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ group by date _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // groupByDate([{ date: '2024-01-01', value: 10 }, { date: '2024-01-01', value: 20 }, { date: '2024-01-02', value: 30 }]) => { '2024-01-01': [10, 20], '2024-01-02': [30] }
-const groupByDate = function (records) { };
+
+const getGroupByDate = function (groupByDateObj, record) {
+  const obj = { ...groupByDateObj };
+
+  if (obj[record.date] === undefined) {
+    obj[record.date] = [];
+  }
+
+  obj[record.date].push(record.value);
+
+  return obj;
+};
+
+const groupByDate = function (records) {
+  return records.reduce(getGroupByDate, {});
+};
+
+displayResult('Group by Date of', "[{ date: '2024-01-01', value: 10 }, { date: '2024-01-01', value: 20 }, { date: '2024-01-02', value: 30 }]", groupByDate([{ date: '2024-01-01', value: 10 }, { date: '2024-01-01', value: 20 }, { date: '2024-01-02', value: 30 }]));
+//{ "2024-01-01": [ 10, 20 ], "2024-01-02": [ 30 ] }
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ find MinMax _-_-_-_-_-_-_-_-_-_-_-_- */
 
