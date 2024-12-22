@@ -218,11 +218,31 @@ const makeCamelCase = function (words) {
 const cameCaseString = makeCamelCase(["hello", "world", "how", "are", "you"]);
 displayResult('Make camel case of', '["hello", "world", "how", "are", "you"]', cameCaseString); // "helloWorldHowAreYou"
 
-// reverseString(["apple", "banana", "cherry"]) => "elppaananabyrrehc"
-const reverseString = function (words) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ reverse String _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// duplicateNumbers([1, 2, 3]) => [1, 1, 2, 2, 3, 3]
-const duplicateNumbers = function (numbers) { };
+// reverseString(["apple", "banana", "cherry"]) => "elppaananabyrrehc"
+
+const getReverseString = function (reverseStr, word) {
+  return reverseStr.concat([...word].reverse().join(''));
+};
+
+const reverseString = function (words) {
+  return words.reduce(getReverseString, '');
+};
+
+displayResult('reverse String of', '["apple", "banana", "cherry"]', reverseString(["apple", "banana", "cherry"])); // "elppaananabyrrehc"
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Duplicate Numbers _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getDuplicateNumbers = function (duplicateNums, number) {
+  return [...duplicateNums, number, number];
+};
+
+const duplicateNumbers = function (numbers) {
+  return numbers.reduce(getDuplicateNumbers, []);
+};
+
+displayResult('Duplicate numbers of', '[1, 2, 3]', duplicateNumbers([1, 2, 3])); // [ 1, 1, 2, 2, 3, 3 ]
 
 // concatenateArrays([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
 const concatenateArrays = function (arrays) { };
