@@ -281,8 +281,19 @@ const capitalizedFirstLettersOf = function (strings) {
 
 displayResult(capitalizedFirstLettersOf(["hello world", "goodbye moon"])); //[ "Hello World", "Goodbye Moon" ]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Find word lengths _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // find word lengths in ["apple pie", "banana split"] => [[5, 3], [6, 5]]
-const wordLengthsOf = function (strings) { };
+
+const splitIntoWords = function (string) {
+  return string.split(' ').map(function (word) { return word.length; });
+};
+
+const wordLengthsOf = function (strings) {
+  return strings.map(splitIntoWords);
+};
+
+displayResult(wordLengthsOf(["apple pie", "banana split"])); // [ [ 5, 3 ], [ 6, 5 ] ]
 
 // flatten nested arrays of [[1, [2, 3]], [4, [5, 6]]] => [[1, 2, 3], [4, 5, 6]]
 const flattenedArraysOf = function (arrays) { };
