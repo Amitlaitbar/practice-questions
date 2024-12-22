@@ -262,8 +262,28 @@ const flattenArray = function (arrays) { };
 // uniqueNumbers([1, 2, 2, 3, 4, 4, 5]) => [1, 2, 3, 4, 5]
 const uniqueNumbers = function (numbers) { };
 
-// groupByLength(["apple", "banana", "cherry", "date"]) => { 5: ["apple", "cherry"], 6: ["banana"], 4: ["date"] }
-const groupByLength = function (strings) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Group by lengths _-_-_-_-_-_-_-_-_-_-_-_- */
+
+// groupByLength(["apple", "banana", "cherry", "date"]) => { 5: ["apple"], 6: ["banana", "cherry"], 4: ["date"] }
+
+const getGroupByLength = function (groupByLengthObj, string) {
+  const length = string.length;
+  const obj = { ...groupByLengthObj };
+
+  if (obj[length] === undefined) {
+    obj[length] = [];
+  }
+
+  obj[length].push(string);
+  return obj;
+};
+
+const groupByLength = function (strings) {
+  return strings.reduce(getGroupByLength, {});
+};
+
+displayResult('Group By length of', '["apple", "banana", "cherry", "date"]', groupByLength(["apple", "banana", "cherry", "date"]));
+/* { "4": [ "date" ], "5": [ "apple" ], "6": [ "banana", "cherry" ] } */
 
 // countOccurrences(["apple", "banana", "cherry", "banana"]) => { apple: 1, banana: 2, cherry: 1 }
 const countOccurrences = function (strings) { };
