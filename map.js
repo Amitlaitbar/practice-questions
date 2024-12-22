@@ -295,8 +295,20 @@ const wordLengthsOf = function (strings) {
 
 displayResult(wordLengthsOf(["apple pie", "banana split"])); // [ [ 5, 3 ], [ 6, 5 ] ]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Flatten nested arrays _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // flatten nested arrays of [[1, [2, 3]], [4, [5, 6]]] => [[1, 2, 3], [4, 5, 6]]
-const flattenedArraysOf = function (arrays) { };
+
+const getFlattenArray = function (array) {
+  return array.flat(Infinity);
+};
+
+const flattenedArraysOf = function (arrays) {
+  return arrays.map(getFlattenArray);
+};
+
+displayResult(flattenedArraysOf([[1, [2, 3]], [4, [5, 6]]]));       // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]
+displayResult(flattenedArraysOf([[1, [[2], 3]], [[[4]], [5, 6]]])); // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]
 
 // sort letters in ["cat", "bat", "rat"] alphabetically => ["act", "abt", "art"]
 const sortedLettersOf = function (strings) { };
