@@ -210,7 +210,7 @@ const getReversedWord = function (word) {
 
 const reversedWordsOf = function (strings) {
   return strings.map(function (string) {
-    return string.split(' ').map(getReversedWord).join(' ');
+    return [...string].map(getReversedWord).join(' ');
   });
 };
 
@@ -238,7 +238,6 @@ const getUniqueChars = function (string) {
 const uniqueCharactersOf = function (strings) {
   return strings.map(getUniqueChars);
 };
-console.log('sajhv');
 
 displayResult(uniqueCharactersOf(["apple", "banana", "grape"])); // [ "aple", "ban", "grape" ]
 
@@ -310,8 +309,19 @@ const flattenedArraysOf = function (arrays) {
 displayResult(flattenedArraysOf([[1, [2, 3]], [4, [5, 6]]]));       // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]
 displayResult(flattenedArraysOf([[1, [[2], 3]], [[[4]], [5, 6]]])); // [ [ 1, 2, 3 ], [ 4, 5, 6 ] ]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Sort letters _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // sort letters in ["cat", "bat", "rat"] alphabetically => ["act", "abt", "art"]
-const sortedLettersOf = function (strings) { };
+
+const getSortedLetters = function (letters) {
+  return [...letters].sort().join('');
+};
+
+const sortedLettersOf = function (strings) {
+  return strings.map(getSortedLetters);
+};
+
+displayResult(sortedLettersOf(["cat", "bat", "rat"])); // ["act", "abt", "art"]
 
 // wrap strings in brackets ["apple", "banana"] => ["[apple]", "[banana]"]
 const wrappedStringsOf = function (strings) { };
