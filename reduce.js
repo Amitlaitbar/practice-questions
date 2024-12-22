@@ -391,8 +391,24 @@ const cartesianProduct = function (arr1, arr2) { };
 // groupByDate([{ date: '2024-01-01', value: 10 }, { date: '2024-01-01', value: 20 }, { date: '2024-01-02', value: 30 }]) => { '2024-01-01': [10, 20], '2024-01-02': [30] }
 const groupByDate = function (records) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ find MinMax _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // findMinMax([1, 2, 3, 4, 5]) => { min: 1, max: 5 }
-const findMinMax = function (numbers) { };
+
+const getMinMax = function (minMaxObj, number) {
+  const obj = { ...minMaxObj };
+
+  obj.min = obj.min > number ? number : obj.min;
+  obj.max = obj.max < number ? number : obj.max;
+
+  return obj;
+};
+
+const findMinMax = function (numbers) {
+  return numbers.reduce(getMinMax, { min: numbers[0], max: 0 });
+};
+
+displayResult('Find min max of', '[1, 2, 3, 4, 5]', findMinMax([1, 2, 3, 4, 5])); //{ min: 1, max: 5 }
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum By Category _-_-_-_-_-_-_-_-_-_-_-_- */
 
