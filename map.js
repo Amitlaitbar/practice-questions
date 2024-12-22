@@ -3,7 +3,7 @@ const displayResult = function (result) { console.log(result); return; };
 /* _-_-_-_-_-_-_-_-_-_-_-_ Squares Of All numbers _-_-_-_-_-_-_-_-_-_-_-_-_- */
 
 const squaresOf = function (numbers) {
-  return numbers.map((number) => number * number);
+  return numbers.map(function (number) { return number * number; });
 };
 
 displayResult(squaresOf([1, 2, 3]));        // [1, 4, 9]
@@ -12,7 +12,7 @@ displayResult(squaresOf([1, 2, 3, 4, 5]));  // [1, 4, 9, 16, 25]
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Lengths Of All Strings _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const lengthsOf = function (strings) {
-  return strings.map((string) => string.length);
+  return strings.map(function (string) { return string.length; });
 };
 
 displayResult(lengthsOf(["apple", "banana", "kiwi"])); // [5, 6, 4]
@@ -20,7 +20,7 @@ displayResult(lengthsOf(["apple", "banana", "kiwi"])); // [5, 6, 4]
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ toUpperCase _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const uppercaseOf = function (strings) {
-  return strings.map((string) => string.toUpperCase());
+  return strings.map(function (string) { return string.toUpperCase(); });
 };
 
 displayResult(uppercaseOf(["hello", "world"])); // [ "HELLO", "WORLD" ]
@@ -29,7 +29,7 @@ displayResult(uppercaseOf(["welcome", "to", "bengaluru"])); // [ "WELCOME", "TO"
 /* _-_-_-_-_-_-_-_-_-_-_-_ First Characters of Strings _-_-_-_-_-_-_-_-_-_-_- */
 
 const firstCharactersOf = function (strings) {
-  return strings.map((string) => string.at(0));
+  return strings.map(function (string) { return string.at(0); });
 };
 
 displayResult(firstCharactersOf(["apple", "banana", "kiwi"])); // ["a", "b", "k"]
@@ -50,7 +50,7 @@ displayResult(truthValuesOf([0, 1, 2, 3])); //[ false, true, true, true ]
 /* _-_-_-_-_-_-_-_-_-_-_-_ Reverse Strings _-_-_-_-_-_-_-_-_-_-_- */
 
 const reversedStringsOf = function (strings) {
-  return strings.map((string) => [...string].reverse().join(''));
+  return strings.map(function (str) { return [...str].reverse().join(''); });
 };
 
 displayResult(reversedStringsOf(["hello", "world"])); //[ "olleh", "dlrow" ]
@@ -183,13 +183,17 @@ displayResult(withoutVowelsOf(["apple", "banana", "grape"])); //[ "ppl", "bnn", 
 
 // Example: cumulative sum of [1, 2, 3] is [1, 1+2, 1+2+3]
 
-const getCumulativeSum = function (array) {
+const calculateSum = function () {
   let cumulativeSum = 0;
 
-  return array.map(function (element) {
+  return function (element) {
     cumulativeSum = element + cumulativeSum;
     return cumulativeSum;
-  });
+  };
+};
+
+const getCumulativeSum = function (array) {
+  return array.map(calculateSum());
 };
 
 const cumulativeSumsOf = function (arrays) {
@@ -217,16 +221,24 @@ displayResult(reversedWordsOf(["hello world", "goodbye moon"])); //["olleh dlrow
 // extract unique characters from ["apple", "banana", "grape"] => ["aple", "ban", "grape"]
 // Maintain the order of their first appearance in each string
 
+const uniqueChars = function () {
+  let uniqueChars = '';
+
+  return function (char) {
+    const charToAdd = uniqueChars.includes(char) ? '' : char;
+    uniqueChars += charToAdd;
+    return charToAdd;
+  };
+};
+
 const getUniqueChars = function (string) {
-  return [...string].reduce(function (uniqueChars, char) {
-    uniqueChars += uniqueChars.includes(char) ? '' : char;
-    return uniqueChars;
-  }, '');
+  return [...string].map(uniqueChars()).join('');
 };
 
 const uniqueCharactersOf = function (strings) {
   return strings.map(getUniqueChars);
 };
+console.log('sajhv');
 
 displayResult(uniqueCharactersOf(["apple", "banana", "grape"])); // [ "aple", "ban", "grape" ]
 
