@@ -5,7 +5,6 @@ const displayResult = function (fileName, input, result) {
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Sum of _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// sumOf([1, 2, 3, 4]) => 10
 const sumOf = function (numbers) {
   return numbers.reduce(function (sum, number) { return sum + number; }, 0);
 };
@@ -15,7 +14,6 @@ displayResult('sum of', '[8, 8, 4, 4]', sumOf([8, 8, 4, 4])); // 24
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ product of _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// productOf([1, 2, 3, 4]) => 24
 const productOf = function (numbers) {
   return numbers.reduce(function (product, number) { return product * number; }, 1);
 };
@@ -24,7 +22,6 @@ displayResult('Product of', '[1, 2, 3, 4]', productOf([1, 2, 3, 4])); // 24
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Average of _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// averageOf([1, 2, 3, 4, 5]) => 3
 const getSum = function (sum, number) {
   return sum + number;
 };
@@ -35,11 +32,27 @@ const averageOf = function (numbers) {
 
 displayResult('Average of', '[1, 2, 3, 4, 5]', averageOf([1, 2, 3, 4, 5])); // 3
 
-// minOf([3, 1, 4, 1, 5, 9, 2]) => 1
-const minOf = function (numbers) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ min of _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// maxOf([3, 1, 4, 1, 5, 9, 2]) => 9
-const maxOf = function (numbers) { };
+const minOf = function (numbers) {
+  return numbers.reduce(function (minNo, number) {
+    return number < minNo ? number : minNo;
+  }, numbers[0]);
+};
+
+displayResult('Min of', '[3, 1, 4, 1, 5, 9, 2]', minOf([3, 1, 4, 1, 5, 9, 2])); // 1
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ max of _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const maxOf = function (numbers) {
+  return numbers.reduce(function (maxNo, number) {
+    return number > maxNo ? number : maxNo;
+  }, numbers[0]);
+};
+
+displayResult('max of', '[3, 1, 4, 1, 5, 9, 2]', maxOf([3, 1, 4, 1, 5, 9, 2])); // 9
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Average of _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // sumPositiveNumbers([1, -2, 3, -4]) => 4
 const sumPositiveNumbers = function (numbers) { };
