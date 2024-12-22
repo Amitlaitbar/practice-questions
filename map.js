@@ -323,7 +323,7 @@ const sortedLettersOf = function (strings) {
 
 displayResult(sortedLettersOf(["cat", "bat", "rat"])); // ["act", "abt", "art"]
 
-/* _-_-_-_-_-_-_-_-_-_-_-_-_ Sort letters _-_-_-_-_-_-_-_-_-_-_-_- */
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Wrap Strings in Brackets _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // wrap strings in brackets ["apple", "banana"] => ["[apple]", "[banana]"]
 
