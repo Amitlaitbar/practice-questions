@@ -631,10 +631,42 @@ const summarizeOrderProducts = function (orders) { };
 // => [{name: "Alice", courses: ["MATH", "SCIENCE"]}, {name: "Bob", courses: ["ENGLISH"]}]
 const getStudentCourses = function (students) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Summarize Book Chapters _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // given an array of books, each with a `title` and `chapters`, where each chapter has a `title` and a `pageCount`, return an array of books, each containing the book's title and an array of chapter titles along with their page counts
 // [{title: "Book 1", chapters: [{title: "Chapter 1", pageCount: 10}, {title: "Chapter 2", pageCount: 20}]}, {title: "Book 2", chapters: [{title: "Chapter 1", pageCount: 15}]}]
 // => [{title: "Book 1", chapters: ["Chapter 1: 10 pages", "Chapter 2: 20 pages"]}, {title: "Book 2", chapters: ["Chapter 1: 15 pages"]}]
-const summarizeBookChapters = function (books) { };
+
+const makeArrayOfBookChapters = function (book) {
+  const chapters = book.chapters;
+
+  const arrayOfChapters = chapters.map(function (chapter) {
+    return [chapter.title, ':', chapter.pageCount, 'pages'].join(' ');
+  });
+
+  book.chapters = arrayOfChapters;
+  return book;
+};
+
+const summarizeBookChapters = function (books) {
+  return books.map(makeArrayOfBookChapters);
+};
+
+const books = [{
+  title: "Book 1", chapters: [{ title: "Chapter 1", pageCount: 10 },
+  { title: "Chapter 2", pageCount: 20 }]
+},
+{
+  title: "Book 2", chapters: [{ title: "Chapter 1", pageCount: 15 }]
+}];
+
+displayResult(summarizeBookChapters(books));
+
+/* [
+  {title: "Book 1",chapters: [ "Chapter 1 : 10 pages", "Chapter 2 : 20 pages" ]},
+    { title: "Book 2", chapters: [ "Chapter 1 : 15 pages" ] }] */
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Get Event Attendees _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // given an array of events, where each event has a `name` and an array of `attendees`, where each attendee has a `firstName` and `lastName`, return an array of events where each event contains the event name and an array of full names of attendees
 // [{name: "Concert", attendees: [{firstName: "John", lastName: "Doe"}, {firstName: "Jane", lastName: "Smith"}]}, {name: "Conference", attendees: [{firstName: "Bob", lastName: "Brown"}]}]
