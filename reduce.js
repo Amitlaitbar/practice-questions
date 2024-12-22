@@ -52,13 +52,29 @@ const maxOf = function (numbers) {
 
 displayResult('max of', '[3, 1, 4, 1, 5, 9, 2]', maxOf([3, 1, 4, 1, 5, 9, 2])); // 9
 
-/* _-_-_-_-_-_-_-_-_-_-_-_-_ Average of _-_-_-_-_-_-_-_-_-_-_-_- */
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of Positive numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// sumPositiveNumbers([1, -2, 3, -4]) => 4
-const sumPositiveNumbers = function (numbers) { };
+const getSumOfPositives = function (sum, number) {
+  return sum += number > 0 ? number : 0;
+};
 
-// sumOfSquares([1, 2, 3, 4]) => 30
-const sumOfSquares = function (numbers) { };
+const sumPositiveNumbers = function (numbers) {
+  return numbers.reduce(getSumOfPositives, 0);
+};
+
+displayResult('Sum of Positives', '[1, -2, 3, -4]', sumPositiveNumbers([1, -2, 3, -4])); // 4
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of Squares _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getSumOfSquares = function (sum, number) {
+  return sum += number ** 2;
+};
+
+const sumOfSquares = function (numbers) {
+  return numbers.reduce(getSumOfSquares, 0);
+};
+
+displayResult('Sum of Squares', '[1, 2, 3, 4]', sumOfSquares([1, 2, 3, 4])); //30
 
 // sumOfOddNumbers([1, 2, 3, 4, 5]) => 9
 const sumOfOddNumbers = function (numbers) { };
