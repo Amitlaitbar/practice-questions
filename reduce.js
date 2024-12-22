@@ -203,8 +203,20 @@ displayResult('Conacatenate words of', '["John", "Jane", "Doe"]', concatenateNam
 // countVowelsInWords(["hello", "world"]) => "eoo"
 const countVowelsInWords = function (words) { };
 
-// makeCamelCase(["hello", "world", "how", "are", "you"]) => "helloWorldHowAreYou"
-const makeCamelCase = function (words) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Make camel case _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getCamelCase = function (string, word) {
+  const [firstChar, ...remainString] = [...word];
+  return string.concat(firstChar.toUpperCase(), remainString.join(''));
+};
+
+const makeCamelCase = function (words) {
+  const [firstChar, ...remainingString] = [...words.reduce(getCamelCase, '')];
+  return firstChar.toLowerCase().concat(remainingString.join(''));
+};
+
+const cameCaseString = makeCamelCase(["hello", "world", "how", "are", "you"]);
+displayResult('Make camel case of', '["hello", "world", "how", "are", "you"]', cameCaseString); // "helloWorldHowAreYou"
 
 // reverseString(["apple", "banana", "cherry"]) => "elppaananabyrrehc"
 const reverseString = function (words) { };
