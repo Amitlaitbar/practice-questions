@@ -122,7 +122,7 @@ displayResult('Sum of even squares', '[1, 2, 3, 4]', findSumOfEvenSquares([1, 2,
 
 const concatenateWords = function (words) {
   return words.reduce(function (concatenatedWords, word) {
-    return concatenatedWords + word;
+    return concatenatedWords.concat(word);
   }, '');
 };
 
@@ -150,17 +150,55 @@ const shortestWord = function (words) {
 const shortest = shortestWord(["apple", "banana", "cherry", "kiwi"]);
 displayResult('Shortest Word of', '["apple", "banana", "cherry", "kiwi"]', shortest); // kiwi
 
-// joinWithComma(["apple", "banana", "cherry"]) => "apple,banana,cherry"
-const joinWithComma = function (words) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Join with comma _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// reverseWords(["hello", "world"]) => "world hello"
-const reverseWords = function (words) { };
+const getJoinedWithComma = function (resultantStr, string) {
+  return resultantStr.concat(string, ',');
+};
 
-// joinWordsWithSpace(["apple", "banana", "cherry"]) => "apple banana cherry"
-const joinWordsWithSpace = function (words) { };
+const joinWithComma = function (words) {
+  return words.reduce(getJoinedWithComma, '').slice(0, -1);
+};
 
-// concatenateNames(["John", "Jane", "Doe"]) => "JohnJaneDoe"
-const concatenateNames = function (names) { };
+const stringsWithCommas = joinWithComma(["apple", "banana", "cherry"]);
+displayResult('Join with comma', '["apple", "banana", "cherry"]', stringsWithCommas); // "apple,banana,cherry"
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ reverse words _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getReversedWords = function (reversedWords, word) {
+  return word.concat(' ', reversedWords);
+};
+
+const reverseWords = function (words) {
+  return words.reduce(getReversedWords, '').slice(0, -1);
+};
+
+displayResult('Reverse words of', '["hello", "world"]', reverseWords(["hello", "world"])); //"world hello"
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ join words with space _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getJoinedWithSpace = function (resultantStr, string) {
+  return resultantStr.concat(string, ' ');
+};
+
+const joinWordsWithSpace = function (words) {
+  return words.reduce(getJoinedWithSpace, '').slice(0, -1);
+};
+
+const stringsWithSpace = joinWordsWithSpace(["apple", "banana", "cherry"]);
+displayResult('Join with space', '["apple", "banana", "cherry"]', stringsWithSpace); // "apple banana cherry"
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Concatenate Names _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getConcatenatedNames = function (concatenatedNames, name) {
+  return concatenatedNames.concat(name);
+};
+
+const concatenateNames = function (names) {
+  return names.reduce(getConcatenatedNames, '');
+};
+
+displayResult('Conacatenate words of', '["John", "Jane", "Doe"]', concatenateNames(["John", "Jane", "Doe"])); // "JohnJaneDoe"
 
 // countVowelsInWords(["hello", "world"]) => "eoo"
 const countVowelsInWords = function (words) { };
