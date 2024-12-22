@@ -1,5 +1,5 @@
 const displayResult = function (fileName, input, result) {
-  console.log(fileName, input, ' : ', result);
+  console.log(fileName, input, ':', result);
   return;
 };
 
@@ -47,7 +47,7 @@ displayResult('Min of', '[3, 1, 4, 1, 5, 9, 2]', minOf([3, 1, 4, 1, 5, 9, 2])); 
 const maxOf = function (numbers) {
   return numbers.reduce(function (maxNo, number) {
     return number > maxNo ? number : maxNo;
-  }, numbers[0]);
+  }, 0);
 };
 
 displayResult('max of', '[3, 1, 4, 1, 5, 9, 2]', maxOf([3, 1, 4, 1, 5, 9, 2])); // 9
@@ -118,14 +118,37 @@ const findSumOfEvenSquares = function (numbers) {
 
 displayResult('Sum of even squares', '[1, 2, 3, 4]', findSumOfEvenSquares([1, 2, 3, 4])); // 20
 
-// concatenateWords(["hello", "world"]) => "helloworld"
-const concatenateWords = function (words) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Concatenate Words _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// longestWord(["apple", "banana", "cherry", "kiwi"]) => "banana"
-const longestWord = function (words) { };
+const concatenateWords = function (words) {
+  return words.reduce(function (concatenatedWords, word) {
+    return concatenatedWords + word;
+  }, '');
+};
 
-// shortestWord(["apple", "banana", "cherry", "kiwi"]) => "kiwi"
-const shortestWord = function (words) { };
+displayResult('Concatenate Words', '["hello", "world"]', concatenateWords(["hello", "world"])); // "helloworld"
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Longest Word _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const longestWord = function (words) {
+  return words.reduce(function (longestWord, word) {
+    return longestWord.length < word.length ? word : longestWord;
+  }, '');
+};
+
+const result = longestWord(["apple", "banana", "cherry", "kiwi"]);
+displayResult('Longest word of', '["apple", "banana", "cherry", "kiwi"]', result); // "banana"
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Shortest Word _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const shortestWord = function (words) {
+  return words.reduce(function (shortestWord, word) {
+    return word.length < shortestWord.length ? word : shortestWord;
+  }, words[0]);
+};
+
+const shortest = shortestWord(["apple", "banana", "cherry", "kiwi"]);
+displayResult('Shortest Word of', '["apple", "banana", "cherry", "kiwi"]', shortest); // kiwi
 
 // joinWithComma(["apple", "banana", "cherry"]) => "apple,banana,cherry"
 const joinWithComma = function (words) { };
