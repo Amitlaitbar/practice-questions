@@ -93,11 +93,30 @@ displayResult('sum of odds', '[1, 2, 3, 4, 5]', sumOfOddNumbers([1, 2, 3, 4, 5])
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ count negative numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
-// countNegativeNumbers([1, -2, 3, -4]) => 2
-const countNegativeNumbers = function (numbers) { };
+const getCountOfNegatives = function (count, number) {
+  const countNo = number < 0 ? 1 : 0;
+  return count + countNo;
+};
 
-// findSumOfEvenSquares([1, 2, 3, 4]) => 20
-const findSumOfEvenSquares = function (numbers) { };
+const countNegativeNumbers = function (numbers) {
+  return numbers.reduce(getCountOfNegatives, 0);
+};
+
+displayResult('Count of negatives', '[1, -2, 3, -4]', countNegativeNumbers([1, -2, 3, -4])); // 2
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Sum of even squares _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getSumOfEvenSquares = function (sum, number) {
+  const numberSquare = number ** 2;
+  const numberToAdd = numberSquare % 2 === 0 ? numberSquare : 0;
+  return sum + numberToAdd;
+};
+
+const findSumOfEvenSquares = function (numbers) {
+  return numbers.reduce(getSumOfEvenSquares, 0);
+};
+
+displayResult('Sum of even squares', '[1, 2, 3, 4]', findSumOfEvenSquares([1, 2, 3, 4])); // 20
 
 // concatenateWords(["hello", "world"]) => "helloworld"
 const concatenateWords = function (words) { };
