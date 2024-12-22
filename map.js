@@ -337,8 +337,15 @@ const wrappedStringsOf = function (strings) {
 
 displayResult(wrappedStringsOf(["apple", "banana"])); // [ "[apple]", "[banana]" ]
 
-// extract names from [{ name: "Alice" }, { name: "Bob" }] => ["Alice", "Bob"]
-const extractNames = function (objects) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Extract Names _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const extractNames = function (objects) {
+  return objects.map(function (object) {
+    return object.name;
+  });
+};
+
+displayResult(extractNames([{ name: "Alice" }, { name: "Bob" }])); // [ "Alice", "Bob" ]
 
 // extract ages from [{ age: 25 }, { age: 30 }] => [25, 30]
 const extractAges = function (objects) { };
@@ -632,4 +639,28 @@ const summarizeBookChapters = function (books) { };
 // given an array of events, where each event has a `name` and an array of `attendees`, where each attendee has a `firstName` and `lastName`, return an array of events where each event contains the event name and an array of full names of attendees
 // [{name: "Concert", attendees: [{firstName: "John", lastName: "Doe"}, {firstName: "Jane", lastName: "Smith"}]}, {name: "Conference", attendees: [{firstName: "Bob", lastName: "Brown"}]}]
 // => [{name: "Concert", attendees: ["John Doe", "Jane Smith"]}, {name: "Conference", attendees: ["Bob Brown"]}]
-const getEventAttendees = function (events) { };
+
+const makeArrayOfAttendeesNames = function (event) {
+  const attendees = event.attendees;
+
+  const fullNames = attendees.map(function (attendeeName) {
+    return [attendeeName.firstName, attendeeName.lastName].join(' ');
+  });
+
+  event.attendees = fullNames;
+  return event;
+};
+
+const getEventAttendees = function (events) {
+  return events.map(makeArrayOfAttendeesNames);
+};
+
+const eventAttendees = [{
+  name: "Concert", attendees: [{ firstName: "John", lastName: "Doe" },
+  { firstName: "Jane", lastName: "Smith" }]
+},
+{ name: "Conference", attendees: [{ firstName: "Bob", lastName: "Brown" }] }];
+
+displayResult(getEventAttendees(eventAttendees));
+/* [{ name: "Concert", attendees: [ "John Doe", "Jane Smith" ] },
+    { name: "Conference", attendees: [ "Bob Brown" ] }] */
