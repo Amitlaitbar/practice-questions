@@ -285,11 +285,30 @@ const groupByLength = function (strings) {
 displayResult('Group By length of', '["apple", "banana", "cherry", "date"]', groupByLength(["apple", "banana", "cherry", "date"]));
 /* { "4": [ "date" ], "5": [ "apple" ], "6": [ "banana", "cherry" ] } */
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Count Occurrences _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // countOccurrences(["apple", "banana", "cherry", "banana"]) => { apple: 1, banana: 2, cherry: 1 }
-const countOccurrences = function (strings) { };
+
+const getCountOfOccurances = function (groupByLengthObj, string) {
+  const obj = { ...groupByLengthObj };
+  obj[string] = obj[string] === undefined ? 1 : obj[string] + 1;
+
+  return obj;
+};
+
+const countOccurrences = function (strings) {
+  return strings.reduce(getCountOfOccurances, {});
+};
+
+displayResult('Occurances of', '["apple", "banana", "cherry", "banana"]', countOccurrences(["apple", "banana", "cherry", "banana"]));
+// { apple: 1, banana: 2, cherry: 1 } 
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Merge objects _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // mergeObjects([{ a: 1, b: 2 }, { b: 3, c: 4 }, { a: 5 }]) => { a: 6, b: 5, c: 4 }
 const mergeObjects = function (objects) { };
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Zip _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // zip(["a", "b", "c"], [1, 2, 3]) => { "a": 1, "b": 2, "c": 3 }
 const zip = function (keys, values) { };
@@ -375,5 +394,25 @@ const groupByDate = function (records) { };
 // findMinMax([1, 2, 3, 4, 5]) => { min: 1, max: 5 }
 const findMinMax = function (numbers) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ sum By Category _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // sumByCategory([{ category: 'A', value: 10 }, { category: 'B', value: 20 }, { category: 'A', value: 30 }]) => { A: 40, B: 20 }
-const sumByCategory = function (items) { };
+const isCategoryPresent = function (obj, item) {
+  return obj[item.category] !== undefined;
+};
+
+const getSumByCategory = function (sumByCategoryObj, item) {
+  const obj = { ...sumByCategoryObj };
+  obj[item.category] = isCategoryPresent(obj, item) ?
+    obj[item.category] + item.value : item.value;
+
+  return obj;
+};
+
+const sumByCategory = function (items) {
+  return items.reduce(getSumByCategory, {});
+};
+
+const resultOfSumByCategory = sumByCategory([{ category: 'A', value: 10 }, { category: 'B', value: 20 }, { category: 'A', value: 30 }]);
+displayResult("Sum by category of", "[{ category: 'A', value: 10 }, { category: 'B', value: 20 }, { category: 'A', value: 30 }]", resultOfSumByCategory);
+//{ A: 40, B: 20 }
