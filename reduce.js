@@ -244,8 +244,17 @@ const duplicateNumbers = function (numbers) {
 
 displayResult('Duplicate numbers of', '[1, 2, 3]', duplicateNumbers([1, 2, 3])); // [ 1, 1, 2, 2, 3, 3 ]
 
-// concatenateArrays([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
-const concatenateArrays = function (arrays) { };
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Concatenate Arrays _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const getConcatenatedArray = function (concatenatedArray, array) {
+  return [...concatenatedArray, ...array];
+};
+
+const concatenateArrays = function (arrays) {
+  return arrays.reduce(getConcatenatedArray, []);
+};
+
+displayResult('Concatenated Array of', '[[1, 2], [3, 4], [5, 6]]', concatenateArrays([[1, 2], [3, 4], [5, 6]])); // [ 1, 2, 3, 4, 5, 6 ]
 
 // flattenArray([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
 const flattenArray = function (arrays) { };
