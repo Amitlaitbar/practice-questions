@@ -1,7 +1,4 @@
-const displayResult = function (fileName, input, result) {
-  console.log(fileName, input, ':', result);
-  return;
-};
+const displayResult = console.log;
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Sum of _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -186,6 +183,7 @@ const joinWordsWithSpace = function (words) {
 };
 
 const stringsWithSpace = joinWordsWithSpace(["apple", "banana", "cherry"]);
+
 displayResult('Join with space', '["apple", "banana", "cherry"]', stringsWithSpace); // "apple banana cherry"
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Concatenate Names _-_-_-_-_-_-_-_-_-_-_-_- */
@@ -256,11 +254,34 @@ const concatenateArrays = function (arrays) {
 
 displayResult('Concatenated Array of', '[[1, 2], [3, 4], [5, 6]]', concatenateArrays([[1, 2], [3, 4], [5, 6]])); // [ 1, 2, 3, 4, 5, 6 ]
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Flatten array _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // flattenArray([[1, 2], [3, 4], [5, 6]]) => [1, 2, 3, 4, 5, 6]
-const flattenArray = function (arrays) { };
+const getFlattenArray = function (flattenArray, array) {
+  const arr = [...flattenArray, ...array];
+  return arr;
+};
+
+const flattenArray = function (arrays) {
+  return arrays.reduce(getFlattenArray, []);
+};
+
+displayResult('Flatten Array of', '[[1, 2], [3, 4], [5, 6]]', flattenArray([[1, 2], [3, 4], [5, 6]])); //[ 1, 2, 3, 4, 5, 6 ]
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Unique Numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // uniqueNumbers([1, 2, 2, 3, 4, 4, 5]) => [1, 2, 3, 4, 5]
-const uniqueNumbers = function (numbers) { };
+
+const getUniqueNumbers = function (uniqueNumbersArray, number) {
+  return uniqueNumbersArray.includes(number) ? [...uniqueNumbersArray] :
+    [...uniqueNumbersArray, number];
+};
+
+const uniqueNumbers = function (numbers) {
+  return numbers.reduce(getUniqueNumbers, []);
+};
+
+displayResult('Unique numbers of', '[1, 2, 2, 3, 4, 4, 5]', uniqueNumbers([1, 2, 2, 3, 4, 4, 5])); //[ 1, 2, 3, 4, 5 ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Group by lengths _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -270,7 +291,7 @@ const getGroupByLength = function (groupByLengthObj, string) {
   const length = string.length;
   const obj = { ...groupByLengthObj };
 
-  if (obj[length] === undefined) {
+  if (!(length in obj)) {
     obj[length] = [];
   }
 
@@ -291,7 +312,7 @@ displayResult('Group By length of', '["apple", "banana", "cherry", "date"]', gro
 
 const getCountOfOccurances = function (groupByLengthObj, string) {
   const obj = { ...groupByLengthObj };
-  obj[string] = obj[string] === undefined ? 1 : obj[string] + 1;
+  obj[string] = !(string in obj) ? 1 : obj[string] + 1;
 
   return obj;
 };
@@ -306,15 +327,56 @@ displayResult('Occurances of', '["apple", "banana", "cherry", "banana"]', countO
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Merge objects _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // mergeObjects([{ a: 1, b: 2 }, { b: 3, c: 4 }, { a: 5 }]) => { a: 6, b: 5, c: 4 }
-const mergeObjects = function (objects) { };
+const mergeObjects = function (objects) {
+  return objects.reduce((result, obj) => {
+    const resultObject = { ...result };
+    const keys = Object.keys(obj);
+
+    for (const key of keys) {
+      resultObject[key] = key in resultObject ?
+        resultObject[key] + obj[key] : obj[key];
+    }
+
+    return resultObject;
+  }, {});
+};
+
+displayResult('Merge Objects of', '[{ a: 1, b: 2 }, { b: 3, c: 4 }, { a: 5 }]', mergeObjects([{ a: 1, b: 2 }, { b: 3, c: 4 }, { a: 5 }])); //{ a: 5, b: 3, c: 4 }
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Zip _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // zip(["a", "b", "c"], [1, 2, 3]) => { "a": 1, "b": 2, "c": 3 }
-const zip = function (keys, values) { };
+
+const zip = function (keys, values) {
+  return values.reduce((result, value) => {
+    const obj = { ...result };
+
+    obj.resultObject[keys[obj.count]] = value;
+    obj.count += 1;
+
+    return obj;
+  }, { count: 0, resultObject: {} }).resultObject;
+};
+
+displayResult('Zip of', '["a", "b", "c"], [1, 2, 3]',
+  zip(["a", "b", "c"], [1, 2, 3])); //{ a: 1, b: 2, c: 3 }
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Make object _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // makeObject(["city", "country"], ["Paris", "France"]) => { "city": "Paris", "country": "France" }
-const makeObject = function (keys, values) { };
+
+const makeObject = function (keys, values) {
+  return values.reduce((result, value) => {
+    const obj = { ...result };
+
+    obj.resultObject[keys[obj.count]] = value;
+    obj.count += 1;
+
+    return obj;
+  }, { count: 0, resultObject: {} }).resultObject;
+};
+
+displayResult('Make object of', '["city", "country"], ["Paris", "France"]', makeObject(["city", "country"], ["Paris", "France"])); // { city: "Paris", country: "France" }
 
 // invertObject({ "a": 1, "b": 2, "c": 3 }) => { 1: "a", 2: "b", 3: "c" }
 const invertObject = function (obj) { };
@@ -373,22 +435,17 @@ const findFirstNonRepeated = function (numbers) { };
 // countVowels(["apple", "banana", "grape"]) => { a: 6, e: 3, i: 0, o: 0, u: 0 }
 const countVowels = function (words) { };
 
-/* _-_-_-_-_-_-_-_-_-_-_-_-_ Merge Consecutive Duplicates _-_-_-_-_-_-_-_-_-_-_-_- */
+/* _-_-_-_-_-_-_-_-_-_-_-_ Merge Consecutive Duplicates _-_-_-_-_-_-_-_-_-_-_ */
 
 // mergeConsecutiveDuplicates([1,1,1,2,3,3,4]) => [1,2,3,4]
 
-const getUniqueNumbers = function (uniqueElements, number) {
+const getMergedConsecutiveDuplicates = function (uniqueElements, number) {
   const arr = [...uniqueElements];
-
-  if (!arr.includes(number)) {
-    arr.push(number);
-  }
-
-  return arr;
+  return arr.includes(number) ? [...arr] : [...arr, number];
 };
 
 const mergeConsecutiveDuplicates = function (array) {
-  return array.reduce(getUniqueNumbers, []);
+  return array.reduce(getMergedConsecutiveDuplicates, []);
 };
 
 displayResult('Merge Consecutive Duplicates of', '[1,1,1,2,3,3,4]', mergeConsecutiveDuplicates([1, 1, 1, 2, 3, 3, 4])); //[ 1, 2, 3, 4 ]
@@ -402,8 +459,23 @@ const topKFrequent = function (numbers, k) { };
 // nestedAverage([[[1, 2]], [3, 4], [5, [6, 7]]]) => 4
 const nestedAverage = function (nestedNumbers) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Cartesian Product _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // cartesianProduct([1, 2], ['a', 'b']) => [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]
-const cartesianProduct = function (arr1, arr2) { };
+
+const getCartesianProduct = function (arr2) {
+  return function (cartesianProductArray, value) {
+    return [...cartesianProductArray, ...arr2.map((element) =>
+      [value, element])];
+  };
+};
+
+const cartesianProduct = function (arr1, arr2) {
+  return arr1.reduce(getCartesianProduct(arr2), []);
+};
+
+displayResult('Cartesian Product of', "[1, 2], ['a', 'b']", cartesianProduct([1, 2], ['a', 'b']));
+//[ [ 1, "a" ], [ 1, "b" ], [ 2, "a" ], [ 2, "b" ] ]
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ group by date _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -412,7 +484,7 @@ const cartesianProduct = function (arr1, arr2) { };
 const getGroupByDate = function (groupByDateObj, record) {
   const obj = { ...groupByDateObj };
 
-  if (obj[record.date] === undefined) {
+  if (!(record.date in obj)) {
     obj[record.date] = [];
   }
 
@@ -442,7 +514,7 @@ const getMinMax = function (minMaxObj, number) {
 };
 
 const findMinMax = function (numbers) {
-  return numbers.reduce(getMinMax, { min: numbers[0], max: 0 });
+  return numbers.reduce(getMinMax, { min: Infinity, max: -Infinity });
 };
 
 displayResult('Find min max of', '[1, 2, 3, 4, 5]', findMinMax([1, 2, 3, 4, 5])); //{ min: 1, max: 5 }
@@ -450,8 +522,9 @@ displayResult('Find min max of', '[1, 2, 3, 4, 5]', findMinMax([1, 2, 3, 4, 5]))
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum By Category _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // sumByCategory([{ category: 'A', value: 10 }, { category: 'B', value: 20 }, { category: 'A', value: 30 }]) => { A: 40, B: 20 }
+
 const isCategoryPresent = function (obj, item) {
-  return obj[item.category] !== undefined;
+  return item.category in obj;
 };
 
 const getSumByCategory = function (sumByCategoryObj, item) {
