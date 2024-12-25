@@ -405,6 +405,7 @@ displayResult('Inverted object of', '{ "a": 1, "b": 2, "c": 3 }', invertObject({
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Merge Arrays _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // mergeArrays([["a", 1], ["b", 2]], [["c", 3], ["d", 4]]) => { "a": 1, "b": 2, "c": 3, "d": 4 }
+
 const mergeArrays = function (arr1, arr2) {
   const mergedArray = [...arr1, ...arr2];
 
@@ -418,14 +419,43 @@ const mergeArrays = function (arr1, arr2) {
 
 displayResult('MergedArray of', '[["a", 1], ["b", 2]], [["c", 3], ["d", 4]]', mergeArrays([["a", 1], ["b", 2]], [["c", 3], ["d", 4]])); //{ a: 1, b: 2, c: 3, d: 4 }
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Group by property _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // groupByProperty([{name: "John", age: 25}, {name: "Jane", age: 30}]) => { 25: [{name: "John", age: 25}], 30: [{name: "Jane", age: 30}] }
-const groupByProperty = function (objects) { };
+
+const groupByProperty = function (objects) {
+  return objects.reduce((result, object) => {
+    const groupedObject = { ...result };
+    groupedObject[object.age] = [object];
+
+    return groupedObject;
+  }, {});
+};
+
+displayResult('GroupByProperty object of', '[{name: "John", age: 25}, {name: "Jane", age: 30}]', groupByProperty([{ name: "John", age: 25 }, { name: "Jane", age: 30 }]));/*{
+"25": [{ name: "John", age: 25 }],
+"30": [{ name: "Jane", age: 30 }]
+}*/
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Ascending Groups _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // ascendingGroups([1,2,3,4,3,4,5,10,6,7,8,9]) => [[1,2,3,4],[3,4,5],[10],[6,7,8,9]]
 const ascendingGroups = function (numbers) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Flatten to object _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // flattenToObject([['a', 1], ['b', 2], ['c', 3]]) => { a: 1, b: 2, c: 3 }
-const flattenToObject = function (pairs) { };
+
+const flattenToObject = function (pairs) {
+  return pairs.reduce((resultObj, pair) => {
+    const flattenObj = { ...resultObj };
+    flattenObj[pair[0]] = pair[1];
+
+    return flattenObj;
+  }, {});
+};
+
+displayResult('Flatten to object of', "[['a', 1], ['b', 2], ['c', 3]]", flattenToObject([['a', 1], ['b', 2], ['c', 3]])); //{ a: 1, b: 2, c: 3 }
 
 // longestString(["apple", "banana", "cherry", "dates"]) => "banana"
 const longestString = function (strings) { };
