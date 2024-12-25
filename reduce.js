@@ -312,7 +312,7 @@ displayResult('Group By length of', '["apple", "banana", "cherry", "date"]', gro
 
 const getCountOfOccurances = function (groupByLengthObj, string) {
   const obj = { ...groupByLengthObj };
-  obj[string] = !(string in obj) ? 1 : obj[string] + 1;
+  obj[string] = string in obj ? obj[string] + 1 : 1;
 
   return obj;
 };
@@ -378,8 +378,29 @@ const makeObject = function (keys, values) {
 
 displayResult('Make object of', '["city", "country"], ["Paris", "France"]', makeObject(["city", "country"], ["Paris", "France"])); // { city: "Paris", country: "France" }
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Invert object _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // invertObject({ "a": 1, "b": 2, "c": 3 }) => { 1: "a", 2: "b", 3: "c" }
-const invertObject = function (obj) { };
+
+const getInvertedObject = function (keys, values) {
+  return values.reduce((resultObj, value) => {
+    const result = { ...resultObj };
+
+    result.inverted[value] = keys[result.count];
+    result.count += 1;
+
+    return result;
+  }, { count: 0, inverted: {} });
+};
+
+const invertObject = function (obj) {
+  const keys = Object.keys(obj);
+  const values = Object.values(obj);
+
+  return getInvertedObject(keys, values).inverted;
+};
+
+displayResult('Inverted object of', '{ "a": 1, "b": 2, "c": 3 }', invertObject({ "a": 1, "b": 2, "c": 3 })); //{ "1": "a", "2": "b", "3": "c" }
 
 // mergeArrays([["a", 1], ["b", 2]], [["c", 3], ["d", 4]]) => { "a": 1, "b": 2, "c": 3, "d": 4 }
 const mergeArrays = function (arr1, arr2) { };
