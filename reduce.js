@@ -402,8 +402,21 @@ const invertObject = function (obj) {
 
 displayResult('Inverted object of', '{ "a": 1, "b": 2, "c": 3 }', invertObject({ "a": 1, "b": 2, "c": 3 })); //{ "1": "a", "2": "b", "3": "c" }
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Merge Arrays _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // mergeArrays([["a", 1], ["b", 2]], [["c", 3], ["d", 4]]) => { "a": 1, "b": 2, "c": 3, "d": 4 }
-const mergeArrays = function (arr1, arr2) { };
+const mergeArrays = function (arr1, arr2) {
+  const mergedArray = [...arr1, ...arr2];
+
+  return mergedArray.reduce((result, arr) => {
+    const mergedObj = { ...result };
+    mergedObj[arr[0]] = arr[1];
+
+    return mergedObj;
+  }, {});
+};
+
+displayResult('MergedArray of', '[["a", 1], ["b", 2]], [["c", 3], ["d", 4]]', mergeArrays([["a", 1], ["b", 2]], [["c", 3], ["d", 4]])); //{ a: 1, b: 2, c: 3, d: 4 }
 
 // groupByProperty([{name: "John", age: 25}, {name: "Jane", age: 30}]) => { 25: [{name: "John", age: 25}], 30: [{name: "Jane", age: 30}] }
 const groupByProperty = function (objects) { };
