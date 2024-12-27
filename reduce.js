@@ -1,53 +1,51 @@
 const displayResult = console.log;
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Sum of _-_-_-_-_-_-_-_-_-_-_-_- */
-
-const sumOf = function (numbers) {
-  return numbers.reduce(function (sum, number) { return sum + number; }, 0);
-};
-
-displayResult('sum of', '[1, 2, 3, 4]', sumOf([1, 2, 3, 4])); // 10
-displayResult('sum of', '[8, 8, 4, 4]', sumOf([8, 8, 4, 4])); // 24
-
-/* _-_-_-_-_-_-_-_-_-_-_-_-_ product of _-_-_-_-_-_-_-_-_-_-_-_- */
-
-const productOf = function (numbers) {
-  return numbers.reduce(function (product, number) { return product * number; }, 1);
-};
-
-displayResult('Product of', '[1, 2, 3, 4]', productOf([1, 2, 3, 4])); // 24
-
-/* _-_-_-_-_-_-_-_-_-_-_-_-_ Average of _-_-_-_-_-_-_-_-_-_-_-_- */
-
 const getSum = function (sum, number) {
   return sum + number;
 };
 
-const averageOf = function (numbers) {
-  return numbers.reduce(getSum, 0) / numbers.length;
+const sumOf = function (numbers) {
+  return numbers.reduce(getSum);
 };
 
-displayResult('Average of', '[1, 2, 3, 4, 5]', averageOf([1, 2, 3, 4, 5])); // 3
+displayResult('sum of', '[1, 2, 3, 4]:', sumOf([1, 2, 3, 4])); // 10
+displayResult('sum of', '[8, 8, 4, 4]:', sumOf([8, 8, 4, 4])); // 24
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ product of _-_-_-_-_-_-_-_-_-_-_-_- */
+
+const productOf = function (numbers) {
+  return numbers.reduce(function (product, number) { return product * number; });
+};
+
+displayResult('Product of', '[1, 2, 3, 4]:', productOf([1, 2, 3, 4])); // 24
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Average of _-_-_-_-_-_-_-_-_-_-_-_- */
+const averageOf = function (numbers) {
+  return numbers.reduce(getSum) / numbers.length;
+};
+
+displayResult('Average of', '[1, 2, 3, 4, 5]:', averageOf([1, 2, 3, 4, 5])); // 3
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ min of _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const minOf = function (numbers) {
   return numbers.reduce(function (minNo, number) {
     return number < minNo ? number : minNo;
-  }, numbers[0]);
+  });
 };
 
-displayResult('Min of', '[3, 1, 4, 1, 5, 9, 2]', minOf([3, 1, 4, 1, 5, 9, 2])); // 1
+displayResult('Min of', '[3, 1, 4, 1, 5, 9, 2]:', minOf([3, 1, 4, 1, 5, 9, 2])); // 1
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ max of _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const maxOf = function (numbers) {
   return numbers.reduce(function (maxNo, number) {
     return number > maxNo ? number : maxNo;
-  }, 0);
+  });
 };
 
-displayResult('max of', '[3, 1, 4, 1, 5, 9, 2]', maxOf([3, 1, 4, 1, 5, 9, 2])); // 9
+displayResult('max of', '[3, 1, 4, 1, 5, 9, 2]:', maxOf([3, 1, 4, 1, 5, 9, 2])); // 9
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of Positive numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -57,63 +55,69 @@ const getSumOfPositives = function (sum, number) {
 };
 
 const sumPositiveNumbers = function (numbers) {
-  return numbers.reduce(getSumOfPositives, 0);
+  return numbers.reduce(getSumOfPositives);
 };
 
-displayResult('Sum of Positives', '[1, -2, 3, -4]', sumPositiveNumbers([1, -2, 3, -4])); // 4
+displayResult('Sum of Positives', '[1, -2, 3, -4]:', sumPositiveNumbers([1, -2, 3, -4])); // 4
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of Squares _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const getSumOfSquares = function (sum, number) {
   const numberToAdd = number ** 2;
-  return sum + numberToAdd;
+  return getSum(sum, numberToAdd);
 };
 
 const sumOfSquares = function (numbers) {
-  return numbers.reduce(getSumOfSquares, 0);
+  return numbers.reduce(getSumOfSquares);
 };
 
-displayResult('Sum of Squares', '[1, 2, 3, 4]', sumOfSquares([1, 2, 3, 4])); //30
+displayResult('Sum of Squares', '[1, 2, 3, 4]:', sumOfSquares([1, 2, 3, 4]));
+//30
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ sum of odds _-_-_-_-_-_-_-_-_-_-_-_- */
 
+const isOdd = (number) => number % 2 === 1;
 const getSumOfOdds = function (sum, number) {
-  const numberToAdd = number % 2 === 1 ? number : 0;
-  return sum + numberToAdd;
+  const numberToAdd = isOdd(number) ? number : 0;
+  return getSum(sum, numberToAdd);
 };
 
 const sumOfOddNumbers = function (numbers) {
-  return numbers.reduce(getSumOfOdds, 0);
+  return numbers.reduce(getSumOfOdds);
 };
 
-displayResult('sum of odds', '[1, 2, 3, 4, 5]', sumOfOddNumbers([1, 2, 3, 4, 5])); // 9
+displayResult('sum of odds', '[1, 2, 3, 4, 5]:', sumOfOddNumbers([1, 2, 3, 4, 5])); // 9
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ count negative numbers _-_-_-_-_-_-_-_-_-_-_-_- */
 
 const getCountOfNegatives = function (count, number) {
   const countNo = number < 0 ? 1 : 0;
-  return count + countNo;
+
+  return getSum(count, countNo);
 };
 
 const countNegativeNumbers = function (numbers) {
-  return numbers.reduce(getCountOfNegatives, 0);
+  return numbers.reduce(getCountOfNegatives);
 };
 
-displayResult('Count of negatives', '[1, -2, 3, -4]', countNegativeNumbers([1, -2, 3, -4])); // 2
+displayResult('Count of negatives', '[1, -2, 3, -4]:', countNegativeNumbers([1, -2, 3, -4])); // 2
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Sum of even squares _-_-_-_-_-_-_-_-_-_-_-_- */
 
+const isEven = (number) => number % 2 === 0;
+
 const getSumOfEvenSquares = function (sum, number) {
   const numberSquare = number ** 2;
-  const numberToAdd = numberSquare % 2 === 0 ? numberSquare : 0;
-  return sum + numberToAdd;
+  const numberToAdd = isEven(numberSquare) ? numberSquare : 0;
+
+  return getSum(sum, numberToAdd);
 };
 
 const findSumOfEvenSquares = function (numbers) {
-  return numbers.reduce(getSumOfEvenSquares, 0);
+  return numbers.reduce(getSumOfEvenSquares);
 };
 
-displayResult('Sum of even squares', '[1, 2, 3, 4]', findSumOfEvenSquares([1, 2, 3, 4])); // 20
+displayResult('Sum of even squares', '[1, 2, 3, 4]:', findSumOfEvenSquares([1, 2, 3, 4])); // 20
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Concatenate Words _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -123,7 +127,7 @@ const concatenateWords = function (words) {
   }, '');
 };
 
-displayResult('Concatenate Words', '["hello", "world"]', concatenateWords(["hello", "world"])); // "helloworld"
+displayResult('Concatenate Words', '["hello", "world"]:', concatenateWords(["hello", "world"])); // "helloworld"
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Longest Word _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -134,7 +138,7 @@ const longestWord = function (words) {
 };
 
 const result = longestWord(["apple", "banana", "cherry", "kiwi"]);
-displayResult('Longest word of', '["apple", "banana", "cherry", "kiwi"]', result); // "banana"
+displayResult('Longest word of', '["apple", "banana", "cherry", "kiwi"]:', result); // "banana"
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Shortest Word _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -145,7 +149,7 @@ const shortestWord = function (words) {
 };
 
 const shortest = shortestWord(["apple", "banana", "cherry", "kiwi"]);
-displayResult('Shortest Word of', '["apple", "banana", "cherry", "kiwi"]', shortest); // kiwi
+displayResult('Shortest Word of', '["apple", "banana", "cherry", "kiwi"]:', shortest); // kiwi
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ Join with comma _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -158,7 +162,7 @@ const joinWithComma = function (words) {
 };
 
 const stringsWithCommas = joinWithComma(["apple", "banana", "cherry"]);
-displayResult('Join with comma', '["apple", "banana", "cherry"]', stringsWithCommas); // "apple,banana,cherry"
+displayResult('Join with comma', '["apple", "banana", "cherry"]:', stringsWithCommas); // "apple,banana,cherry"
 
 /* _-_-_-_-_-_-_-_-_-_-_-_-_ reverse words _-_-_-_-_-_-_-_-_-_-_-_- */
 
@@ -193,7 +197,7 @@ const getConcatenatedNames = function (concatenatedNames, name) {
 };
 
 const concatenateNames = function (names) {
-  return names.reduce(getConcatenatedNames, '');
+  return names.reduce(getConcatenatedNames);
 };
 
 displayResult('Conacatenate words of', '["John", "Jane", "Doe"]', concatenateNames(["John", "Jane", "Doe"])); // "JohnJaneDoe"
@@ -457,17 +461,43 @@ const flattenToObject = function (pairs) {
 
 displayResult('Flatten to object of', "[['a', 1], ['b', 2], ['c', 3]]", flattenToObject([['a', 1], ['b', 2], ['c', 3]])); //{ a: 1, b: 2, c: 3 }
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ Flatten to object _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // longestString(["apple", "banana", "cherry", "dates"]) => "banana"
 const longestString = function (strings) { };
 
 // mergeIntervals([[1,3], [2,4], [5,7]]) => [[1, 4], [5, 7]]
 const mergeIntervals = function (intervals) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ sum and count _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // sumAndCount([1, 2, 3, 4]) => { sum: 10, count: 4 }
-const sumAndCount = function (numbers) { };
+const sumAndCount = function (numbers) {
+  return numbers.reduce((object, number) => {
+    const obj = { ...object };
+
+    obj.sum = obj.sum + number;
+    obj.count = obj.count + 1;
+
+    return obj;
+  }, { sum: 0, count: 0 });
+};
+
+displayResult('Sum and count of ', '[1, 2, 3, 4]', sumAndCount([1, 2, 3, 4]));
+//{ sum: 10, count: 4 }
+
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ deep flatten _-_-_-_-_-_-_-_-_-_-_-_- */
 
 // deepFlatten([[1,2], [3,4, [5,6]], 7]) => [1,2,3,4,5,6,7]
-const deepFlatten = function (arr) { };
+// const getFlattenArray = function (resultArr, array) {
+
+// };
+
+// const deepFlatten = function (arr) {
+//   return arr.reduce(getFlattenArray);
+// };
+
+// displayResult('Deep faltten array of', '[[1,2], [3,4, [5,6]], 7]', deepFlatten([[1, 2], [3, 4, [5, 6]], 7]));
 
 // findMax([1, 2, 3, 4, 5]) => 5
 const findMax = function (numbers) { };
@@ -478,8 +508,22 @@ const cumulativeSum = function (numbers) { };
 // equalChunksOfAtLeast([1, 1, 1, 2, 2, 5, 1, 1]) => [[1,1,1], [2,2], [1,1]]
 const equalChunksOfAtLeast = function (numbers) { };
 
+/* _-_-_-_-_-_-_-_-_-_-_-_-_ group by type _-_-_-_-_-_-_-_-_-_-_-_- */
+
 // groupByType([1, 'a', 2, 'b', 3, 'c', 4]) => { number: [1, 2, 3, 4], string: ['a', 'b', 'c'] }
-const groupByType = function (array) { };
+const groupByType = function (array) {
+  return array.reduce((result, element) => {
+    const groupByTypeObj = { ...result };
+    const type = isNaN(+element) ? 'string' : 'number';
+
+    groupByTypeObj[type].push(element);
+
+    return groupByTypeObj;
+
+  }, { number: [], string: [] });
+};
+
+displayResult('GroupByType of', "[1, 'a', 2, 'b', 3, 'c', 4]", groupByType([1, 'a', 2, 'b', 3, 'c', 4])); //{ number: [ 1, 2, 3, 4 ], string: [ "a", "b", "c" ] }
 
 // runningAverages([1, 2, 3, 4]) => [1, 1.5, 2, 2.5]
 const runningAverages = function (numbers) { };
